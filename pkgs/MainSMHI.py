@@ -1,8 +1,9 @@
 import os
-from HandleSMHI import HandleSMHI
+from pkgs.HandleSMHI import HandleSMHI
 # from MergerSMHI import MergerSMHI
 
 class MainSMHI:
+    '''Handles downloading of csv files from SMHI'''
     def __init__(self):
         pass
 
@@ -19,7 +20,7 @@ class MainSMHI:
         elif parameter == 'temperature':
             weather_value = 1
 
-        with open('data_w/station_keys.csv', 'r', encoding = 'utf-8-sig') as station_keys:
+        with open('pkgs/station_keys.csv', 'r', encoding = 'utf-8-sig') as station_keys:
 
             for line in station_keys.readlines()[1:]:
                 city    = line.split(',')[0].capitalize().replace(' ', '_')
@@ -31,6 +32,9 @@ class MainSMHI:
 
 
     def clean_raw(self):
+        '''Searches in 'data_w/raw/' folder. \n
+        Saves to 'data_w/clean/' folder. '''
+        
         raw_list = os.listdir('data_w/raw')
         handler  = HandleSMHI()
 

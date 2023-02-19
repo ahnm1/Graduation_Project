@@ -1,4 +1,3 @@
-#%%
 import os
 import pandas as pd
 
@@ -81,7 +80,9 @@ class MegaMerger:
 
 
     def find_and_fill_missing_data(self):
-
+        '''Searches in 'data_el/merged/' folder.    \n
+        Saves to 'data_el/merged/' as:              \n
+        nonull_elpriser_och_vader.csv'''
         df = pd.read_csv('data_el/merged/elpriser_och_vader.csv', sep=';', low_memory=False)
 
         #fill missing data
@@ -92,6 +93,7 @@ class MegaMerger:
         df['Vindhastighet AVG'] = df['Vindhastighet AVG'].fillna(mean_wind)
 
         df.to_csv('data_el/merged/nonull_elpriser_och_vader.csv', sep=';', index=False)
+        print('Done @: data_el/merged/nonull_elpriser_och_vader.csv')
 
 
 if __name__ == '__main__':
